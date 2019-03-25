@@ -2,7 +2,7 @@ html
     head
         title Ubah Biodata
     body
-        form(action=`/biodata/${data.id_biodata}?_method=PUT` method="post")
+        form(action=`/biodata/${data._id}?_method=PUT` method="post")
             label Nama
                 input(type="text" name="nama" value=data.nama)
                 br

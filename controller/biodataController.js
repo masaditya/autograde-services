@@ -1,37 +1,39 @@
-const Biodata = require("../model/Biodata")
+const Biodata = require('../model/Biodata')
 
 module.exports = {
   index: function(req, res) {
-    Biodata.get(req.con, function(err, rows) {
-      res.render("biodata/index", { data: rows })
+    Biodata.find().then(function(rows) {
+      res.render('biodata/index', { data: rows })
     })
   },
 
   create: function(req, res) {
-    res.render("biodata/create")
+    res.render('biodata/create')
   },
 
   store: function(req, res) {
-    Biodata.create(req.con, req.body, function(err) {
-      res.redirect("/biodata")
+    Biodata.create(req.body).then(function() {
+      res.redirect('/biodata')
     })
   },
 
   edit: function(req, res) {
-    Biodata.getById(req.con, req.params.id, function(err, rows) {
-      res.render("biodata/edit", { data: rows[0] })
+    Biodata.findById(req.params.id).then(function(row) {
+      res.render('biodata/edit', { data: row })
     })
   },
 
   update: function(req, res) {
-    Biodata.update(req.con, req.body, req.params.id, function(err) {
-      res.redirect("/biodata")
-    })
+    Biodata.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }).then(
+      function() {
+        res.redirect('/biodata')
+      }
+    )
   },
 
   destroy: function(req, res) {
-    Biodata.destroy(req.con, req.params.id, function(err) {
-      res.redirect("/biodata")
+    Biodata.findOneAndDelete({ _id: req.params.id }).then(function() {
+      res.redirect('/biodata')
     })
   }
 }
