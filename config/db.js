@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 mongoose.connect(
-  'mongodb+srv://root:toor@cluster0-n1knt.mongodb.net/test?retryWrites=true'
-)
+  "mongodb+srv://masaditya:ZFbT4JdsMZEoATly@cluster0.kfdlw.mongodb.net/db1?retryWrites=true&w=majority",
+  { useNewUrlParser: true }
+);
