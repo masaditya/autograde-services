@@ -13,12 +13,15 @@ const biodataRouter = require("./routes/biodataRouter");
 const tugasRouter = require("./routes/tugasRouter");
 const authRouter = require("./routes/authRouter");
 const classRouter = require("./routes/classRouter");
+const repoRouter = require("./routes/repoRouter");
+
 
 // routing
 app.use("/biodata", biodataRouter);
 app.use("/assignment", tugasRouter);
 app.use("/user", authRouter);
 app.use("/class", classRouter);
+app.use("/repo", repoRouter)
 
 // starting server
 app.listen(process.env.PORT || 3000, function () {
