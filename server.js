@@ -24,6 +24,6 @@ app.use("/class", classRouter);
 app.use("/repo", repoRouter)
 
 // starting server
-app.listen(process.env.PORT || 3000, function () {
-  console.log(`server listening on port ${process.env.PORT || 3000}`);
+app.listen(process.env.PORT || 8888, function () {
+  console.log(`server listening on port ${process.env.PORT || 8888}`);
 });

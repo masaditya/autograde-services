@@ -1,4 +1,5 @@
 const Repo = require('../model/Repo')
+const mongoose = require("mongoose");
 
 module.exports = {
   index: function(req, res) {
@@ -14,7 +15,7 @@ module.exports = {
   },
 
   store: function(req, res) {
-    Repo.create(req.body).then(function(row) {
+    Repo.create({ ...req.body, _id: new mongoose.Types.ObjectId() }).then(function(row) {
       res.send(row)
     })
   },
