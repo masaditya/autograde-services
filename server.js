@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 require("./config/db");
 
 // parsing body request
 app.use(express.json());
-
+app.use(cors());
 // app.use(app.router);
 // include router
 const biodataRouter = require("./routes/biodataRouter");
