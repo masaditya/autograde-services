@@ -22,7 +22,7 @@ module.exports = {
 
   update: function(req, res) {
     Repo.findOneAndUpdate(
-      { _id: req.params.id },
+      { id: req.params.id },
       { $set: req.body },
       { new: true }
     ).then(function(row) {
@@ -31,7 +31,7 @@ module.exports = {
   },
 
   destroy: function(req, res) {
-    Repo.findOneAndDelete({ _id: req.params.id }).then(function(row) {
+    Repo.findOneAndDelete({ id: req.params.id }).then(function(row) {
       res.send(row)
     })
   }

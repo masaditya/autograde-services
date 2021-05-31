@@ -3,7 +3,6 @@ const User = require("../model/User");
 const Repo = require("../model/Repo");
 const mongoose = require("mongoose");
 
-
 module.exports = {
   //   index: function (req, res) {
   //     Assignment.find().then(function (rows) {
@@ -43,7 +42,7 @@ module.exports = {
 
   update: function (req, res) {
     User.findOneAndUpdate(
-      { _id: req.params.id },
+      { id: req.params.id },
       { $set: { class: req.body.class } },
       { new: true, upsert: true, returnOriginal: false }
     ).then(function (row) {
