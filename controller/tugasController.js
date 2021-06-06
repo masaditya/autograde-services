@@ -13,6 +13,7 @@ module.exports = {
 
   show: function (req, res) {
     Assignment.find({ id: req.params.id }).then(function (row) {
+      console.log(row)
       res.send(row);
     });
   },

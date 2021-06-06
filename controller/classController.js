@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Class = require("../model/Class");
+const User = require("../model/User");
 
 module.exports = {
   index: function (req, res) {
@@ -8,10 +9,18 @@ module.exports = {
     });
   },
 
-  show: function (req, res) {
-    Class.findById(req.params.id).then(function (row) {
+  showbyteacher: function (req, res) {
+    Class.find({ teacher: req.params.username }).then(function (row) {
       res.send(row);
     });
+  },
+
+  show: function (req, res) {
+    Class.find({ class: req.params.class })
+      .populate("student")
+      .then(function (row) {
+        res.send(row);
+      });
   },
 
   store: function (req, res) {
@@ -22,11 +31,17 @@ module.exports = {
     );
   },
 
-  update: function (req, res) {
-    Class.findOneAndUpdate(
-      { _id: req.params.id },
-      { $set: req.body },
-      { new: true }
+  update: async function (req, res) {
+    console.log(req.body);
+    await Class.findOneAndUpdate(
+      { _id: req.body.kelas._id },
+      { $push: { student: req.body.student } },
+      { useFindAndModify: false }
+    );
+    await User.findOneAndUpdate(
+      { _id: req.body.student._id },
+      { $push: { kelas: req.body.kelas } },
+      { useFindAndModify: false }
     ).then(function (row) {
       res.send(row);
     });
