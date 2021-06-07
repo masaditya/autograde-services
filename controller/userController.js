@@ -19,6 +19,12 @@ module.exports = {
     });
   },
 
+  // showUserClass: function (req, res) {
+  //   User.find({ id: req.body.id }).then(function (row) {
+  //     res.send(row);
+  //   });
+  // },
+
   store: async function (req, res) {
     let findUser = await User.findOne({ id: req.body.id })
       .populate("kelas")
@@ -78,9 +84,22 @@ module.exports = {
     });
   },
 
-  //   destroy: function (req, res) {
-  //     Assignment.findOneAndDelete({ _id: req.params.id }).then(function (row) {
-  //       res.send(row);
-  //     });
-  //   },
+  destroy: async function (req, res) {
+    // Assignment.findOneAndDelete({ _id: req.params.id }).then(function (row) {
+    //   res.send(row);
+    // });
+    console.log(req.body);
+    await Class.findOneAndUpdate(
+      { _id: req.body.kelas._id },
+      { $pull: { student: req.body.student._id } },
+      { useFindAndModify: false, new: true }
+    );
+    await User.findOneAndUpdate(
+      { _id: req.body.student._id },
+      { $pull: { kelas: req.body.kelas._id } },
+      { useFindAndModify: false, new: true }
+    ).then(function (row) {
+      res.send(row);
+    });
+  },
 };
