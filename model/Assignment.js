@@ -13,6 +13,7 @@ const assignmentSchema = new mongoose.Schema({
   last_push: String,
   correct: Number,
   incorrect: Number,
+  code_dosen: String,
   detail: [{ type: String }],
 });
 

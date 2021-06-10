@@ -3,7 +3,6 @@ const User = require("../model/User");
 const Repo = require("../model/Repo");
 const mongoose = require("mongoose");
 
-
 module.exports = {
   index: function (req, res) {
     Assignment.find().then(function (rows) {
@@ -13,7 +12,13 @@ module.exports = {
 
   show: function (req, res) {
     Assignment.find({ id: req.params.id }).then(function (row) {
-      console.log(row)
+      console.log(row);
+      res.send(row);
+    });
+  },
+
+  getbydosen: function (req, res) {
+    Assignment.find({ code_dosen: req.params.code }).then(function (row) {
       res.send(row);
     });
   },

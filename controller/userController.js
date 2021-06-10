@@ -53,7 +53,6 @@ module.exports = {
   },
 
   update: async function (req, res) {
-    console.log(req.body);
     Class.findOneAndUpdate(
       { _id: req.body.kelas._id },
       { $push: { student: req.body.student } },
@@ -66,6 +65,16 @@ module.exports = {
       ).then((row) => {
         res.send(row);
       });
+    });
+  },
+
+  setCode: function (req, res) {
+    User.findOneAndUpdate(
+      { id: req.params.id },
+      { $set: { code_dosen: req.body.code_dosen } },
+      { new: true, useFindAndModify: false }
+    ).then((row) => {
+      res.send(row);
     });
   },
 

@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   id: Number,
   username: String,
   name: String,
+  code_dosen : String,
   email: String,
   role: String,
   kelas: [{ type: mongoose.Schema.Types.ObjectId, ref: "Class" }]
