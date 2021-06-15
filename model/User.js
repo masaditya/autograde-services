@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   code_dosen : String,
   email: String,
   role: String,
-  kelas: [{ type: mongoose.Schema.Types.ObjectId, ref: "Class" }]
+  kelas: [{ type: mongoose.Schema.Types.ObjectId, ref: "Class" }],
+  tugas : [{ type: mongoose.Schema.Types.ObjectId, ref: "Assignment" }]
 });
 
 module.exports = mongoose.model("User", userSchema);

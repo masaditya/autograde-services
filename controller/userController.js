@@ -8,6 +8,7 @@ module.exports = {
   index: function (req, res) {
     User.find()
       .populate("kelas")
+      .populate("tugas")
       .then(function (rows) {
         res.send(rows);
       });

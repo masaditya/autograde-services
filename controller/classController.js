@@ -16,8 +16,14 @@ module.exports = {
   },
 
   show: function (req, res) {
-    Class.find({ class: req.params.class })
-      .populate("student")
+    Class.findOne({ class: req.params.class })
+      .populate({
+        path: "student",
+        populate: {
+          path: "tugas",
+          model: "User",
+        },
+      })
       .then(function (row) {
         res.send(row);
       });
