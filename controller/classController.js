@@ -10,9 +10,17 @@ module.exports = {
   },
 
   showbyteacher: function (req, res) {
-    Class.find({ teacher: req.params.username }).then(function (row) {
-      res.send(row);
-    });
+    Class.find({ teacher: req.params.username })
+      .populate({
+        path: "student",
+        populate: {
+          path: "tugas",
+          model: "User",
+        },
+      })
+      .then(function (row) {
+        res.send(row);
+      });
   },
 
   show: function (req, res) {
