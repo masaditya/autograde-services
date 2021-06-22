@@ -4,9 +4,9 @@ const classController = require("../controller/classController");
 
 router.get("/", classController.index);
 router.get("/:class", classController.show);
-router.get("/dosen/:username", classController.showbyteacher);
+router.get("/dosen/:id", classController.showbyteacher);
 router.post("/", classController.store);
-router.put("/", classController.update);
+router.put("/", classController.update); // join kelas
 router.delete("/:id", classController.destroy);
 
 module.exports = router;

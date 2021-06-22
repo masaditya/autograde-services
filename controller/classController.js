@@ -10,12 +10,12 @@ module.exports = {
   },
 
   showbyteacher: function (req, res) {
-    Class.find({ teacher: req.params.username })
+    Class.find({ teacher: req.params.id })
       .populate({
         path: "student",
         populate: {
           path: "tugas",
-          model: "User",
+          model: "Assignment",
         },
       })
       .then(function (row) {
@@ -29,7 +29,7 @@ module.exports = {
         path: "student",
         populate: {
           path: "tugas",
-          model: "User",
+          model: "Assignment",
         },
       })
       .then(function (row) {
